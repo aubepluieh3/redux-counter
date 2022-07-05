@@ -1,32 +1,74 @@
-import  * as types from '../actions/ActionTypes';
+import * as types from '../actions/ActionTypes';
 
-const initialState = {
-    color: 'black',
-    number: 0
+const initialState={
+    counters: [
+        {
+            color: 'black',
+            number: 0
+        }
+    ]
 };
-
 
 function counter(state = initialState, action){
+    //레퍼런스 생성
+    const { counters } = state;
+
     switch(action.type){
+        case types.CREATE:
+            return{
+                counters: [
+                    ...counters,
+                    {
+                        color:action.color,
+                        number:0
+                    }
+                ]
+            };
+        case types.REMOVE:
+            return{    
+                counters: counters.slice(0,counters.length-1)
+            };
+
         case types.INCREMENT:
             return {
-                ...state,
-                number: state.number + 1
-            };
-        case types.DECREMENT:
-            return {
-                ...state,
-                number: state.number - 1
+                counters: [
+                    ...counters.slice(0, action.index),
+                    {
+                        ...counters[action.index],
+                        number: counters[action.index].number + 1
+                    },
+                    ...counters.slice(action.index + 1, counters.length)
+                ]
             };
         
-        case types.SET_COLOR:    
+        case types.DECREMENT:
             return {
-                ...state,
-                color: action.color
+                counters: [
+                    ...counters.slice(0,action.index),
+                    {
+                        ...counters[action.index],
+                        number: counters[action.index].number - 1
+                    },
+                    ...counters.slice(action.index + 1, counters.length)
+                ]
+            };
+        
+        case types.SET_COLOR:
+            return {
+                counters: [
+                    ...counters.slice(0,action.index),
+                    {
+                        ...counters[action.index],
+                        color: action.color
+                    },
+                    ...counters.slice(action.index + 1, counters.length)
+                ]
             };    
+
         default:
-            return state;    
+            return state;
     }
-};
+
+}
 
 export default counter;

@@ -8,7 +8,7 @@ import { legacy_createStore as createStore } from 'redux';
 import reducers from './reducers';
 import { Provider } from 'react-redux';
 
-const store = createStore(reducers);
+const store = createStore(reducers, window.devToolsExtension && window.devToolsExtension());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
