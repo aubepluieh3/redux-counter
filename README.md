@@ -1,3 +1,12 @@
+## 멀티 카운터
+
+![image](https://github.com/aubepluieh3/redux-counter/blob/master/multi-counter.JPG)
+
+생성, 삭제 기능   
+왼쪽 클릭시 숫자 증가 및 색깔 변화   
+오른쪽 클릭시 숫자 감소
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
